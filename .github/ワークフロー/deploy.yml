@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@master        
       - uses: SamKirkland/FTP-Deploy-Action@2.0.0   
         env:                                        
-          FTP_SERVER: mh.rsw.jp:21
+          FTP_SERVER: mh.rsw.jp
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }} 
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }} 
           LOCAL_DIR: ./                          
