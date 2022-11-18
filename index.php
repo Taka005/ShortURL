@@ -1,4 +1,9 @@
 <?php
+setcookie("check",true);
+if(!isset($_COOKIE["check"])){
+    exit;
+}
+
 if($_GET["p"]){
     $url = json_decode(file_get_contents("./data/url.json"),true);
 
