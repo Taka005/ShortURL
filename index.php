@@ -1,6 +1,6 @@
 <?php
 
-if($_SERVER["SERVER_PROTOCOL"] !== "HTTP/1.0"){
+if($_SERVER["SERVER_PROTOCOL"] == "HTTP/1.0"){
     exit;
 }
 
