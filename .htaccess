@@ -1,0 +1,6 @@
+RewriteEngine on
+
+RewriteRule ^(.*)/ /?p=$1 [QSA,L]
+RewriteRule ^(.*)$ /?p=$1 [QSA,L]
+
+Options -Indexes
