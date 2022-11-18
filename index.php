@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 if($_GET["p"]){
     $url = json_decode(file_get_contents("./data/url.json"),true);
 
@@ -12,9 +10,9 @@ if($_GET["p"]){
 	exit;
 }
 
-if(isset($_SESSION["text"])){
+if(isset($_COOKIE["url"])){
     $res = "<h3 class='text-center text-secondary '>".htmlspecialchars($_GET["text"])."</h3>";
-    $_SESSION["text"] = null;
+    $_COOKIE["url"] = null;
 }
 
 if($_POST["url"]){
@@ -22,14 +20,15 @@ if($_POST["url"]){
     $url = json_decode(file_get_contents("./data/url.json"),true);
     
     if(strpos($_POST["url"],"tlti.tk")){
-        $_SESSION["text"] = "このサイトのURLは使用できません";
+        $text = "このサイトのURLは使用できません";
     }else if(!preg_match("/^(http|https):\/\/([A-Z0-9][A-Z0-9_-]*(?:\.[A-Z0-9][A-Z0-9_-]*)+):?(\d+)?\/?/i",$_POST["url"])){
-        $_SESSION["text"] = "URLを入力してください";
+        $text = "URLを入力してください";
     }else{
         $url[$random] = $_POST["url"];
         file_put_contents("./data/url.json",json_encode($url,JSON_UNESCAPED_SLASHES|JSON_PARTIAL_OUTPUT_ON_ERROR));
-        $_SESSION["text"] = "https://tlti.tk/".$random;
+        $text = "https://tlti.tk/".$random;
     }
+    setcookie("url",$text);
     header("Location: https://tlti.tk/");
 }
 
