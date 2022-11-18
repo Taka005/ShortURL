@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 if($_GET["p"]){
     $url = json_decode(file_get_contents("./data/url.json"),true);
 
@@ -10,8 +12,9 @@ if($_GET["p"]){
 	exit;
 }
 
-if($_GET["text"]){
+if(isset($_SESSION["text"])){
     $res = "<h3 class='text-center text-secondary '>".htmlspecialchars($_GET["text"])."</h3>";
+    $_SESSION["text"] = null;
 }
 
 if($_POST["url"]){
@@ -19,15 +22,15 @@ if($_POST["url"]){
     $url = json_decode(file_get_contents("./data/url.json"),true);
     
     if(strpos($_POST["url"],"tlti.tk")){
-        $text = "このサイトのURLは使用できません";
+        $_SESSION["text"] = "このサイトのURLは使用できません";
     }else if(!preg_match("/^(http|https):\/\/([A-Z0-9][A-Z0-9_-]*(?:\.[A-Z0-9][A-Z0-9_-]*)+):?(\d+)?\/?/i",$_POST["url"])){
-        $text = "URLを入力してください";
+        $_SESSION["text"] = "URLを入力してください";
     }else{
         $url[$random] = $_POST["url"];
         file_put_contents("./data/url.json",json_encode($url,JSON_UNESCAPED_SLASHES|JSON_PARTIAL_OUTPUT_ON_ERROR));
-        $text = "https://tlti.tk/".$random;
+        $_SESSION["text"] = "https://tlti.tk/".$random;
     }
-    header("Location: https://tlti.tk/?text=".$text);
+    header("Location: https://tlti.tk/");
 }
 
 ?>
