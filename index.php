@@ -11,7 +11,7 @@ if($_GET["p"]){
 }
 
 if(isset($_COOKIE["url"])){
-    $res = "<h3 class='text-center text-secondary '>".htmlspecialchars($_GET["text"])."</h3>";
+    $res = "<h3 class='text-center text-secondary '>".htmlspecialchars($_COOKIE["url"])."</h3>";
     $_COOKIE["url"] = null;
 }
 
