@@ -1,9 +1,9 @@
 <?php
-if($_GET['p']){
+if($_GET["p"]){
     $url = json_decode(file_get_contents("./data/url.json"),true);
 
-	if(isset($url[$_GET['p']])){
-		header("Location: ".$url[$_GET['p']]);
+	if(isset($url[$_GET["p"]])){
+		header("Location: ".$url[$_GET["p"]]);
 	}else{
 		print "URLが見つかりません";
 	}
@@ -14,16 +14,16 @@ if($_GET["text"]){
     $res = "<h3 class='text-center text-secondary '>".htmlspecialchars($_GET["text"])."</h3>";
 }
 
-if($_POST['url']){
-    $random = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWZY0123456789'),0,8);
+if($_POST["url"]){
+    $random = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWZY0123456789"),0,8);
     $url = json_decode(file_get_contents("./data/url.json"),true);
     
-    if(strpos($_POST['url'],'tlti.tk')){
+    if(strpos($_POST["url"],"tlti.tk")){
         $text = "このサイトのURLは使用できません";
-    }else if(!preg_match('/^(http|https):\/\/([A-Z0-9][A-Z0-9_-]*(?:\.[A-Z0-9][A-Z0-9_-]*)+):?(\d+)?\/?/i',$_POST['url'])){
+    }else if(!preg_match("/^(http|https):\/\/([A-Z0-9][A-Z0-9_-]*(?:\.[A-Z0-9][A-Z0-9_-]*)+):?(\d+)?\/?/i",$_POST["url"])){
         $text = "URLを入力してください";
     }else{
-        $url[$random] = $_POST['url'];
+        $url[$random] = $_POST["url"];
         file_put_contents("./data/url.json",json_encode($url,JSON_UNESCAPED_SLASHES|JSON_PARTIAL_OUTPUT_ON_ERROR));
         $text = "https://tlti.tk/".$random;
     }
