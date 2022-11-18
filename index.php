@@ -1,9 +1,5 @@
 <?php
 
-if($_SERVER["SERVER_PROTOCOL"] == "HTTP/1.0"){
-    exit;
-}
-
 if($_GET["p"]){
     $url = json_decode(file_get_contents("./data/url.json"),true);
 
