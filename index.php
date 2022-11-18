@@ -1,6 +1,6 @@
 <?php
-setcookie("check",true);
-if(!isset($_COOKIE["check"])){
+
+if($_SERVER["SERVER_PROTOCOL"] !== "HTTP/1.0"){
     exit;
 }
 
