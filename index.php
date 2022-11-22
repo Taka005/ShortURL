@@ -49,7 +49,7 @@ if($_POST["url"]){
     <meta property="og:title" content="トップページ" />
     <meta property="og:description" content="無料で短縮URLを作成することができます" />
     <meta property="og:site_name" content="TLTI-短縮URL" />
-    <meta property="og:image" content="./images/takasumibot.png" />
+    <meta property="og:image" content="./images/link.png" />
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
